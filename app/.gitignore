@@ -1,0 +1,37 @@
+# Built application files
+/build/
+out/
+
+# Gradle files
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+gradle.properties
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+.idea/.name
+.idea/.idea_modules
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/codeStyles
+.idea/dataSources
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/modules.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# macOS specific files
+.DS_Store
+
+# Custom project-specific properties
+/gradle.properties

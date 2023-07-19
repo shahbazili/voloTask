@@ -1,0 +1,119 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+}
+def hilt_version = "2.44"
+android {
+    namespace 'com.volo.voloandroidtask'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.volo.voloandroidtask"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug{
+            buildConfigField "String", "BASE_URL", "\"https://api.nasa.gov/mars-photos/api/v1/\""
+            buildConfigField "String", "API_KEY", "\"${API_KEY}\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://api.nasa.gov/mars-photos/api/v1/\""
+            buildConfigField "String", "API_KEY", "\"${API_KEY}\""
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+//    androidTestImplementation 'androidx.test:rules:1.5.2'
+
+    testImplementation 'org.mockito:mockito-core:4.8.1'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
+
+    androidTestImplementation 'org.mockito:mockito-core:4.8.1'
+    androidTestImplementation 'org.mockito:mockito-inline:3.12.4'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.2.0'
+
+    // Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:converter-simplexml:2.7.1"
+    implementation "com.github.erickok:retrofit-xmlrpc:v1.2"
+    // Ok Http
+    implementation('com.squareup.okhttp3:okhttp') { version { strictly '5.0.0-alpha.2' } }
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:5.0.0-alpha.3'
+    // Rx Java
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    implementation "androidx.room:room-runtime:2.5.2"
+    implementation "androidx.room:room-paging:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+    implementation "androidx.room:room-ktx:2.5.2"
+    def paging_version = "3.1.1" //current version at the time
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+// alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:$paging_version"
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
+
+}
+kapt {
+    correctErrorTypes = true
+}

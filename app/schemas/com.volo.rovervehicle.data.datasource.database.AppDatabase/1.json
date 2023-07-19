@@ -1,0 +1,198 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "98a5e286511b1556f06007df41f4440c",
+    "entities": [
+      {
+        "tableName": "Photo",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `earthDate` TEXT NOT NULL, `imgSrc` TEXT NOT NULL, `sol` INTEGER NOT NULL, `page` INTEGER NOT NULL, `type` TEXT NOT NULL, `cameraType` TEXT NOT NULL, `camera_fullName` TEXT, `camera_cameraId` INTEGER, `camera_cameraName` TEXT, `camera_roverId` INTEGER, `rover_cameras` TEXT, `rover_roverId` INTEGER, `rover_landingDate` TEXT, `rover_launchDate` TEXT, `rover_maxDate` TEXT, `rover_maxSol` INTEGER, `rover_roverName` TEXT, `rover_status` TEXT, `rover_totalPhotos` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earthDate",
+            "columnName": "earthDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imgSrc",
+            "columnName": "imgSrc",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sol",
+            "columnName": "sol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "page",
+            "columnName": "page",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cameraType",
+            "columnName": "cameraType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "camera.fullName",
+            "columnName": "camera_fullName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "camera.cameraId",
+            "columnName": "camera_cameraId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "camera.cameraName",
+            "columnName": "camera_cameraName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "camera.roverId",
+            "columnName": "camera_roverId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.cameras",
+            "columnName": "rover_cameras",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.roverId",
+            "columnName": "rover_roverId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.landingDate",
+            "columnName": "rover_landingDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.launchDate",
+            "columnName": "rover_launchDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.maxDate",
+            "columnName": "rover_maxDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.maxSol",
+            "columnName": "rover_maxSol",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.roverName",
+            "columnName": "rover_roverName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.status",
+            "columnName": "rover_status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rover.totalPhotos",
+            "columnName": "rover_totalPhotos",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "remote_key",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`photo_id` INTEGER NOT NULL, `prevKey` INTEGER, `currentPage` INTEGER NOT NULL, `nextKey` INTEGER, `created_at` INTEGER NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`photo_id`))",
+        "fields": [
+          {
+            "fieldPath": "photoID",
+            "columnName": "photo_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevKey",
+            "columnName": "prevKey",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "currentPage",
+            "columnName": "currentPage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextKey",
+            "columnName": "nextKey",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "photo_id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '98a5e286511b1556f06007df41f4440c')"
+    ]
+  }
+}
